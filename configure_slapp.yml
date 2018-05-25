@@ -1,0 +1,45 @@
+- hosts: slappbase
+  user: smartlis
+  become: yes
+  become_method: sudo
+  tasks:
+  
+  - name: Install python python-dev build-essential
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - python
+      - python-dev
+      - build-essential
+      - python-pip
+      - virtualenv
+      - supervisor
+      - libpq-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - libffi-dev
+      
+  - name: Create binaries and configuration directories
+    file:
+      path: "{{ item }}"
+      owner: smartlis
+      group: smartlis
+      state: directory
+      recurse: yes
+    with_items:
+      - /etc/smartlis/core/backend
+      - /srv/smartlis/core/backend
+  
+  - name: Download latest version backend
+    unarchive:
+      src: ftp://192.1.1.181/smartlis/smartlis_backend_4.2_latest.zip
+      dest: /srv/smartlis/core/backend/
+      remote_src: yes
+      
+  - name: Create virtualenv
+    shell: virtualenv /srv/smartlis/core/backend/venv
+    
+  - name: Activate venv and install requirements.txt
+    shell: cd /srv/smartlis/core/backend && . venv/bin/activate && pip install -r requirements.txt
+    
