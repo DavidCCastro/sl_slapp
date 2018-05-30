@@ -66,7 +66,7 @@
   - name: Edit MAIN_IP parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
-      regexp: '^(MAIN_IP = ).*/'
+      regexp: '^MAIN_IP ='
       line: '"localhost"'
       
       
