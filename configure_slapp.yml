@@ -90,8 +90,14 @@
   - name: Edit BROKER_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
-      regexp: '^BROKER_HOST ='
-      line: 'BROKER_HOST = "amqp://guest:guest@slrabbitmqbase:5672"'
+      regexp: '^BROKER_URL ='
+      line: 'BROKER_URL = "amqp://guest:guest@slrabbitmqbase:5672"'
+      
+  - name: Edit DB_PREFIX parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^DB_PREFIX ='
+      line: 'DB_PREFIX = ""'
       
       
       
