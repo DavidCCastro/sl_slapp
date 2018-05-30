@@ -67,6 +67,31 @@
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^MAIN_IP ='
-      line: '"localhost"'
+      line: 'MAIN_IP = "localhost"'
+  
+  - name: Edit POSTGRES_HOST parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^POSTGRES_HOST ='
+      line: 'POSTGRES_HOST = "{{ postgres_host }}"'
+  
+  - name: Edit COUCHDB_HOST parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^COUCHDB_HOST ='
+      line: 'COUCHDB_HOST = "{{ couchdb_host }}"'
+  
+  - name: Edit ELASTICSEARCH_HOST parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^ELASTICSEARCH_HOST ='
+      line: 'ELASTICSEARCH_HOST = "{{ postgres_host }}"'
+      
+  - name: Edit BROKER_HOST parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^BROKER_HOST ='
+      line: 'BROKER_HOST = "amqp://guest:guest@{{ slrabbitserver }}:5672"'
+      
       
       
