@@ -73,25 +73,25 @@
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^POSTGRES_HOST ='
-      line: 'POSTGRES_HOST = "{{ postgres_host }}"'
+      line: 'POSTGRES_HOST = "sldatabase"'
   
   - name: Edit COUCHDB_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^COUCHDB_HOST ='
-      line: 'COUCHDB_HOST = "{{ couchdb_host }}"'
+      line: 'COUCHDB_HOST = "sldatabase"'
   
   - name: Edit ELASTICSEARCH_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^ELASTICSEARCH_HOST ='
-      line: 'ELASTICSEARCH_HOST = "{{ postgres_host }}"'
+      line: 'ELASTICSEARCH_HOST = "slelasticbase"'
       
   - name: Edit BROKER_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^BROKER_HOST ='
-      line: 'BROKER_HOST = "amqp://guest:guest@{{ slrabbitserver }}:5672"'
+      line: 'BROKER_HOST = "amqp://guest:guest@slrabbitmqbase:5672"'
       
       
       
