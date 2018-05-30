@@ -43,3 +43,24 @@
   - name: Activate venv and install requirements.txt
     shell: cd /srv/smartlis/core/backend && . venv/bin/activate && pip install -r requirements.txt
     
+  - name: Download and extrat fonts.zip
+    unarchive:
+      src: ftp://192.1.1.181/smartlis/fonts.zip
+      dest: /srv/smartlis/core/backend/venv/lib/python2.7/site-packages/reportlab/fonts
+      remote_src: yes
+      
+  - name: Create /srv/smartlis/core/backend/settings directory
+    file:
+      path: /srv/smartlis/core/backend/settings
+      owner: smartlis
+      group: smartlis
+      state: directory
+      recurse: yes
+      
+  - name: Copy global_settings.py from ftp
+    get_url:
+      url: ftp://192.1.1.181/smartlis/global_settings.py
+      dest: /srv/smartlis/core/backend/settings/global_setting.py
+      backup: yes
+      
+      
