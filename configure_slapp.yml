@@ -60,7 +60,13 @@
   - name: Copy global_settings.py from ftp
     get_url:
       url: ftp://192.1.1.181/smartlis/global_settings.py
-      dest: /srv/smartlis/core/backend/settings/global_setting.py
+      dest: /srv/smartlis/core/backend/settings/global_settings.py
       backup: yes
+      
+  - name: Edit MAIN_IP parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^(MAIN_IP = ).*/'
+      line: '"localhost"'
       
       
