@@ -101,7 +101,7 @@
       
   - name: Add slwww01 to CORS origin whitelist
     blockinfile:
-      path: path: /srv/smartlis/core/backend/settings/global_settings.py
+      path: /srv/smartlis/core/backend/settings/global_settings.py
       block: |
         CORS_ORIGIN_WHITELIST = [^M
             "slwww01-pre"
