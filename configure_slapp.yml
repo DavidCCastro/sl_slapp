@@ -99,11 +99,17 @@
       regexp: '^DB_PREFIX ='
       line: 'DB_PREFIX = ""'
       
-  - name: Add slwww01 to CORS origin whitelist
+  - name: Add slwww to CORS origin whitelist
     blockinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       block: |
-        CORS_ORIGIN_WHITELIST = [^M
-            "slwww01-pre"
+        CORS_ORIGIN_WHITELIST = [
+            "slwwwbase"
         ]
+  
+  - name: Create symlink
+    file:
+      src: /srv/smartlis/core/backend/settings/global_settings.py
+      dest: /etc/smartlis/core/backend/global_settings.py
+      state: link
       
