@@ -6,8 +6,16 @@
   
   - name: Check configuration
     become: yes
-    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python 0_status.py > /home/smartlis/python_0_status.log
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python 0_status.py > /home/smartlis/python_0_status.log && deactivate
     
   - name: Create databases and Elasticsearch indexes
     become: yes
-    shell: python A_create_empty_databases.py
+    shell:  cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python A_create_empty_databases.py > /home/smartlis/empty_databases.log && deactivate
+    
+  - name: Run initial data migrations
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python B_create_empty_tables.py > /home/smartlis/initial_migration.log && deactivate
+    
+  - name: Run initial data migrations 2
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python C_init_system_tables.py > /home/smartlis/initi_sys_tables.log && deactivate
