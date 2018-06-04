@@ -112,8 +112,3 @@
       src: /srv/smartlis/core/backend/settings/global_settings.py
       dest: /etc/smartlis/core/backend/global_settings.py
       state: link
-      
-  - name: Activate venv and check configuration
-    pip:
-      virtualenv: /srv/smartlis/core/backend/sl_root/scripts/initialize
-      virtualenv_command: python 0_status.py
