@@ -1,0 +1,74 @@
+- hosts: slappbase
+  user: smartlis
+  become: yes
+  become_method: sudo
+  tasks:
+  
+  - name: Create uWSGI file
+    file:
+      path: /etc/smartlis/core/backend/uwsgi.ini
+      state: touch
+  
+  - name: Edit uWSGI file
+    blockinfile:
+      path: /etc/smartlis/core/backend/uwsgi.ini
+      block: |
+        [uwsgi]
+        chdir= /srv/smartlis/core/backend/sl_root/
+        home= /srv/smartlis/core/backend/venv/
+        wsgi-file = dj_site/wsgi.py
+        socket = 0.0.0.0:9000
+        stats = 0.0.0.0:9100
+        master = True
+        processes = 4
+        threads = 2
+        harakiri = 20
+        max_requests = 5000
+        vacuum = True
+        buffer-size = 32768
+        
+  - name: Create log directory
+    file:
+      path: /var/log/smartlis/core/backend
+      state: directory
+      
+  - name: Change permissions smartlis log directory
+    file:
+      path: /var/log/smartlis
+      owner: smartlis
+      group: smartlis
+      state: touch
+      
+  - name: Create smartlis-core-backend.conf file
+    file:
+      path: /etc/supervisor/conf.d/smartlis-core-backend.conf
+      state: touch
+  
+  - name: Edit smartlis-core-backend.conf file
+    blockinfile:
+      path: /etc/supervisor/conf.d/smartlis-core-backend.conf
+      block: |
+        [program:smartlis-core-backend]
+        command=/srv/smartlis/core/backend/venv/bin/uwsgi /etc/smartlis/core/backend/uwsgi.ini
+        user=smartlis
+        autostart=true
+        autorestart=true
+        stdout_logfile=/var/log/smartlis/core/backend/stdout.log
+        stdout_logfile_maxbytes=10MB
+        stdout_logfile_backups=10
+        stdout_capture_maxbytes=1MB
+        stderr_logfile=/var/log/smartlis/core/backend/stderr.log
+        stderr_logfile_maxbytes=10MB
+        stderr_logfile_backups=10
+     
+  - name: Change permissions smartlis log directory
+    file:
+      path: /etc/supervisor/conf.d/smartlis-core-backend.conf
+      owner: smartlis
+      group: smartlis
+      state: touch
+      
+  - name: Update supervisor
+    supervisorctl:
+      name: smartlis-core-backend
+      state: restarted
