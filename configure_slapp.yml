@@ -99,6 +99,12 @@
       regexp: '^DB_PREFIX ='
       line: 'DB_PREFIX = ""'
       
+  - name: Edit SL_REDIS_GLOBAL_SERVER = parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^SL_REDIS_GLOBAL_SERVER = "redis://'
+      line: 'SL_REDIS_GLOBAL_SERVER = "redis://slappbase:6379'
+      
   - name: Add slwww to CORS origin whitelist
     blockinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
