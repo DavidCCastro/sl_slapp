@@ -6,7 +6,7 @@
   
   - name: Install redis server
     become: yes
-    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && apt-get install -y redis-server
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && apt-get install -y redis-server && deactivate
   
   - name: Check configuration
     become: yes
@@ -16,10 +16,36 @@
     become: yes
     shell:  cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python A_create_empty_databases.py > /home/smartlis/empty_databases.log && deactivate
     
-  - name: Run initial data migrations
+  - name: Run initial data migrations B_create_empty_tables
     become: yes
     shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python B_create_empty_tables.py > /home/smartlis/initial_migration.log && deactivate
     
-  - name: Run initial data migrations 2
+  - name: Run initial data migrations C_init_system_tables
     become: yes
     shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python C_init_system_tables.py > /home/smartlis/initi_sys_tables.log && deactivate
+    
+  - name: Run initial data migrations D_load_base
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python D_load_base.py > /home/smartlis/D_load_base.log && deactivate
+  
+  - name: Run initial data migrations E_load_demo
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python E_load_demo.py > /home/smartlis/E_load_demo.log && deactivate
+  
+  - name: Run initial data migrations F_load_10_orders
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python F_load_10_orders.py > /home/smartlis/F_load_10_orders.log && deactivate
+  
+  - name: Run test I_test_admin_pages
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python I_test_admin_pages.py > /home/smartlis/I_test_admin_pages.log && deactivate
+  
+  - name: Run test J_sl_boot
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python J_sl_boot.py > /home/smartlis/J_sl_boot.log && deactivate
+  
+  - name: Run test K_simple_workflow
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python K_simple_workflow.py > /home/smartlis/K_simple_workflow.log && deactivate
+  
+  
