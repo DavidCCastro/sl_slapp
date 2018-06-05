@@ -4,6 +4,10 @@
   become_method: sudo
   tasks:
   
+  - name: Install redis server
+    become: yes
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && apt-get install -y redis-server
+  
   - name: Check configuration
     become: yes
     shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python 0_status.py > /home/smartlis/python_0_status.log && deactivate
