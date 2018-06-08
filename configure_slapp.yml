@@ -33,11 +33,10 @@
       path: "{{ item }}"
       owner: smartlis
       group: smartlis
-      state: touch
+      recurse: yes
     with_items:
       - /etc/smartlis/core/backend
       - /srv/smartlis/core/backend
-      - /srv/smartlis/core/backend/venv/bin/python2
   
   - name: Download latest version backend
     unarchive:
