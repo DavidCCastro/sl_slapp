@@ -20,16 +20,24 @@
       - libxslt1-dev
       - libffi-dev
       
-  - name: Create binaries and configuration directories
+  - name: Create configuration directories
+    file:
+      path: "{{ item }}"
+      state: directory
+    with_items:
+      - /etc/smartlis/core/backend
+      - /srv/smartlis/core/backend
+      
+  - name: Change permissions to configuration directories
     file:
       path: "{{ item }}"
       owner: smartlis
       group: smartlis
-      state: directory
+      state: touch
       recurse: yes
     with_items:
-      - /etc/smartlis/core/backend
-      - /srv/smartlis/core/backend
+      - /etc/smartlis
+      - /srv/smartlis
   
   - name: Download latest version backend
     unarchive:
