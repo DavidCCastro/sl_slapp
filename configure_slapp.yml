@@ -119,10 +119,8 @@
       path: /srv/smartlis/core/backend/settings/global_settings.py
       block: |
         CORS_ORIGIN_WHITELIST = [
-            "slwww:8084",  #Example 1
-            "labtech3.smartlis.com:55253"   #Example 2
+            "192.1.1.220"
         ]
-      state: absent
   
   - name: Create symlink
     file:
