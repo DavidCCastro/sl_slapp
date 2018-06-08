@@ -34,7 +34,6 @@
       owner: smartlis
       group: smartlis
       state: touch
-      recurse: yes
     with_items:
       - /etc/smartlis
       - /srv/smartlis
