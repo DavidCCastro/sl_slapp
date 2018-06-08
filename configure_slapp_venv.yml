@@ -10,10 +10,8 @@
   
   - name: Check configuration
     become: yes
-    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python 0_status.py > /home/smartlis/python_0_status.log && deactivate
-    args:
-      warn: false
-    
+    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python 0_status.py > /home/smartlis/python_0_status.log
+  
   - name: Create databases and Elasticsearch indexes
     become: yes
     shell:  cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python A_create_empty_databases.py > /home/smartlis/empty_databases.log && deactivate
