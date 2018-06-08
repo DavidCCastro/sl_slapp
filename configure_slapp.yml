@@ -82,37 +82,43 @@
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^POSTGRES_HOST ='
-      line: 'POSTGRES_HOST = "sldatabase"'
+      line: 'POSTGRES_HOST = "192.1.1.221"'
   
   - name: Edit COUCHDB_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^COUCHDB_HOST ='
-      line: 'COUCHDB_HOST = "sldatabase"'
+      line: 'COUCHDB_HOST = "192.1.1.221"'
   
   - name: Edit ELASTICSEARCH_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^ELASTICSEARCH_HOST ='
-      line: 'ELASTICSEARCH_HOST = "slelasticbase"'
+      line: 'ELASTICSEARCH_HOST = "192.1.1.222"'
       
   - name: Edit BROKER_HOST parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^BROKER_URL ='
-      line: 'BROKER_URL = "amqp://guest:guest@slrabbitmqbase:5672"'
+      line: 'BROKER_URL = "amqp://guest:guest@192.1.1.224:5672"'
       
   - name: Edit DB_PREFIX parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^DB_PREFIX ='
       line: 'DB_PREFIX = ""'
+  
+  - name: Edit COUCHDB_PORT parameter in global_settings.py
+    lineinfile:
+      path: /srv/smartlis/core/backend/settings/global_settings.py
+      regexp: '^COUCHDB_PORT ='
+      line: 'COUCHDB_PORT = "5984"'
       
   - name: Edit SL_REDIS_GLOBAL_SERVER = parameter in global_settings.py
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^SL_REDIS_GLOBAL_SERVER = "redis://'
-      line: 'SL_REDIS_GLOBAL_SERVER = "redis://slappbase:6379'
+      line: 'SL_REDIS_GLOBAL_SERVER = "redis://192.1.1.225:6379"'
       
   - name: Add slwww to CORS origin whitelist
     blockinfile:
