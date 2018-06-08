@@ -112,7 +112,7 @@
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^COUCHDB_PORT ='
-      line: 'COUCHDB_PORT = "5984"'
+      line: 'COUCHDB_PORT = 5984'
       
   - name: Edit SL_REDIS_GLOBAL_SERVER = parameter in global_settings.py
     lineinfile:
