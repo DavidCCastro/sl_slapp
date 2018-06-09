@@ -100,7 +100,7 @@
     lineinfile:
       path: /srv/smartlis/core/backend/settings/global_settings.py
       regexp: '^BROKER_URL ='
-      line: 'BROKER_URL = "amqp://guest:guest@192.1.1.224:5672"'
+      line: 'BROKER_URL = "amqp://guest:guest@192.1.1.224:15672"'
       
   - name: Edit DB_PREFIX parameter in global_settings.py
     lineinfile:
