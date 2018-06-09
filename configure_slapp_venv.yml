@@ -43,9 +43,3 @@
   - name: Run test J_sl_boot
     become: yes
     shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python J_sl_boot.py > /home/smartlis/J_sl_boot.log && deactivate
-  
-  - name: Run test K_simple_workflow
-    become: yes
-    shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && python K_simple_workflow.py > /home/smartlis/K_simple_workflow.log && deactivate
-  
-  
