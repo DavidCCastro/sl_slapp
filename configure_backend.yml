@@ -68,6 +68,14 @@
       group: smartlis
       state: touch
       
+  - name: Change permissions smartlis log directory
+    file:
+      path: /srv/smartlis/core/backend/sl_root/
+      owner: smartlis
+      group: smartlis
+      recurse: yes
+      state: touch
+      
   - name: Update supervisor
     supervisorctl:
       name: smartlis-core-backend
