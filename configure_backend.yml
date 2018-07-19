@@ -61,14 +61,14 @@
         stderr_logfile_maxbytes=10MB
         stderr_logfile_backups=10
      
-  - name: Change permissions smartlis log directory
+  - name: Change permissions smartlis-core-backend.conf file
     file:
       path: /etc/supervisor/conf.d/smartlis-core-backend.conf
       owner: smartlis
       group: smartlis
       state: touch
       
-  - name: Change permissions smartlis log directory
+  - name: Change permissions /srv/smartlis/core/backend/sl_root/ directory
     file:
       path: /srv/smartlis/core/backend/sl_root/
       owner: smartlis
