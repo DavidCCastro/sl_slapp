@@ -4,6 +4,12 @@
   become_method: sudo
   tasks:
   
+  - name: wait for couchdb configuration is finished
+    wait_for:
+      host: 192.1.1.221
+      port: 5984
+      state: present
+  
   - name: Install redis server
     become: yes
     shell: cd /srv/smartlis/core/backend/sl_root/scripts/initialize && . /srv/smartlis/core/backend/venv/bin/activate && apt-get install -y redis-server && deactivate
