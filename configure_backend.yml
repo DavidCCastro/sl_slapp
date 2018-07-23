@@ -74,7 +74,7 @@
       owner: smartlis
       group: smartlis
       recurse: yes
-      state: touch
+      state: directory
       
   - name: Update supervisor
     supervisorctl:
