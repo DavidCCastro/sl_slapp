@@ -1,4 +1,6 @@
 - hosts: slappbase
+  become_user: smartlis
+  become_method: sudo
 
   tasks:
   - name: Create direcories
