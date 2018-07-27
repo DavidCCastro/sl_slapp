@@ -1,0 +1,11 @@
+- hosts: slappbase
+
+  tasks:
+  - name: Create direcories
+    file:
+      path: /srv/smartlis/core/backend/sl_root_custom/images
+      owner: smartlis
+      group: smartlis
+      state: directory
+    
+    
