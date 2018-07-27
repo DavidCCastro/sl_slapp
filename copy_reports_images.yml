@@ -7,5 +7,12 @@
       owner: smartlis
       group: smartlis
       state: directory
+      recurse: yes
     
-    
+  - name: Copy global_settings.py from ftp
+    get_url:
+      url: ftp://192.1.1.181/smartlis/"{{ item }}"
+      dest: /srv/smartlis/core/backend/sl_root_custom/images/
+    with_items:
+      - LT-logo-RGB-300DPI.jpg
+      - SL-logo-RGB-300DPI.jpg
