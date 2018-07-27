@@ -68,13 +68,16 @@
       group: smartlis
       state: touch
       
-  - name: Change permissions /srv/smartlis/ directory
+  - name: Change permissions /srv/smartlis/ and /etc/smartlis/ directories
     file:
-      path: /srv/smartlis/
+      path: "{{ item }}"
       owner: smartlis
       group: smartlis
       recurse: yes
       state: directory
+    with_items:
+      - /srv/smartlis/
+      - /etc/smartlis/
       
   - name: Update supervisor
     supervisorctl:
