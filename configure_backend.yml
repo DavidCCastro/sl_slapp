@@ -68,9 +68,9 @@
       group: smartlis
       state: touch
       
-  - name: Change permissions /srv/smartlis/core/backend/sl_root/ directory
+  - name: Change permissions /srv/smartlis/ directory
     file:
-      path: /srv/smartlis/core/backend/sl_root/
+      path: /srv/smartlis/
       owner: smartlis
       group: smartlis
       recurse: yes
