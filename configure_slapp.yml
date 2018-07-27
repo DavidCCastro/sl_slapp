@@ -37,8 +37,8 @@
       group: smartlis
       recurse: yes
     with_items:
-      - /etc/smartlis/core/backend
-      - /srv/smartlis/core/backend
+      - /etc/smartlis/
+      - /srv/smartlis/
   
   - name: Download latest version backend
     unarchive:
