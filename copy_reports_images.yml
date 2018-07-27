@@ -9,7 +9,7 @@
       state: directory
       recurse: yes
     
-  - name: Copy global_settings.py from ftp
+  - name: Copy images from ftp
     get_url:
       url: ftp://192.1.1.181/smartlis/"{{ item }}"
       dest: /srv/smartlis/core/backend/sl_root_custom/images/
