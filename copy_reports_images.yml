@@ -12,7 +12,12 @@
       state: directory
       recurse: yes
     
-  - name: Copy images from ftp
+  - name: Copy image 1 from ftp
     get_url:
       url: ftp://192.1.1.181/smartlis/LT-logo-RGB-300DPI.jpg
       dest: /srv/smartlis/core/backend/sl_root_custom/images/LT-logo-RGB-300DPI.jpg
+  
+  - name: Copy image 2 from ftp
+    get_url:
+      url: ftp://192.1.1.181/smartlis/SL-logo-RGB-300DPI.jpg
+      dest: /srv/smartlis/core/backend/sl_root_custom/images/SL-logo-RGB-300DPI.jpg
